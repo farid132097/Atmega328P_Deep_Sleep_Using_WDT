@@ -1,0 +1,1 @@
+lowpower.o: lowpower.c

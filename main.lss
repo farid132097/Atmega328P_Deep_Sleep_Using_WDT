@@ -1,0 +1,424 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000216  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000004  00800100  00800100  0000028a  2**0
+                  ALLOC
+  2 .debug_aranges 00000060  00000000  00000000  0000028a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_pubnames 000000fb  00000000  00000000  000002ea  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000372  00000000  00000000  000003e5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 0000022a  00000000  00000000  00000757  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   000003b8  00000000  00000000  00000981  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  000000f0  00000000  00000000  00000d3c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000018d  00000000  00000000  00000e2c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    00000043  00000000  00000000  00000fb9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000048  00000000  00000000  00000ffc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 a3 00 	jmp	0x146	; 0x146 <__vector_6>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a4 30       	cpi	r26, 0x04	; 4
+  80:	b1 07       	cpc	r27, r17
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 48 00 	call	0x90	; 0x90 <main>
+  88:	0c 94 09 01 	jmp	0x212	; 0x212 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <main>:
+#include <avr/sleep.h>
+#include "lowpower.h"
+#include "led.h"
+
+
+int main(void){
+  90:	cf 93       	push	r28
+  92:	df 93       	push	r29
+
+  LED_Init();
+  94:	0e 94 d1 00 	call	0x1a2	; 0x1a2 <LED_Init>
+  Sleep_Init();
+  98:	0e 94 8e 00 	call	0x11c	; 0x11c <Sleep_Init>
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+  9c:	cc e2       	ldi	r28, 0x2C	; 44
+  9e:	d1 e0       	ldi	r29, 0x01	; 1
+  
+  while(1){
+  
+    if( WDT_Get_Ticks()%5 == 0 ){
+  a0:	0e 94 83 00 	call	0x106	; 0x106 <WDT_Get_Ticks>
+  a4:	25 e0       	ldi	r18, 0x05	; 5
+  a6:	30 e0       	ldi	r19, 0x00	; 0
+  a8:	40 e0       	ldi	r20, 0x00	; 0
+  aa:	50 e0       	ldi	r21, 0x00	; 0
+  ac:	0e 94 e7 00 	call	0x1ce	; 0x1ce <__udivmodsi4>
+  b0:	61 15       	cp	r22, r1
+  b2:	71 05       	cpc	r23, r1
+  b4:	81 05       	cpc	r24, r1
+  b6:	91 05       	cpc	r25, r1
+  b8:	59 f4       	brne	.+22     	; 0xd0 <main+0x40>
+	  LED_On();
+  ba:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <LED_On>
+  be:	84 ef       	ldi	r24, 0xF4	; 244
+  c0:	91 e0       	ldi	r25, 0x01	; 1
+  c2:	fe 01       	movw	r30, r28
+  c4:	31 97       	sbiw	r30, 0x01	; 1
+  c6:	f1 f7       	brne	.-4      	; 0xc4 <main+0x34>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  c8:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  ca:	d9 f7       	brne	.-10     	; 0xc2 <main+0x32>
+	  _delay_ms(50);
+	  LED_Off();
+  cc:	0e 94 d6 00 	call	0x1ac	; 0x1ac <LED_Off>
+	  Deep_Sleep();
+	}else{
+	  Deep_Sleep();
+  d0:	0e 94 6b 00 	call	0xd6	; 0xd6 <Deep_Sleep>
+  d4:	e5 cf       	rjmp	.-54     	; 0xa0 <main+0x10>
+
+000000d6 <Deep_Sleep>:
+#include <avr/sleep.h>
+
+volatile uint32_t WDT_Ticks=0;
+
+void Deep_Sleep(void){
+  sleep_enable();
+  d6:	83 b7       	in	r24, 0x33	; 51
+  d8:	81 60       	ori	r24, 0x01	; 1
+  da:	83 bf       	out	0x33, r24	; 51
+  sleep_bod_disable();
+  dc:	85 b7       	in	r24, 0x35	; 53
+  de:	80 66       	ori	r24, 0x60	; 96
+  e0:	85 bf       	out	0x35, r24	; 53
+  e2:	8f 7d       	andi	r24, 0xDF	; 223
+  e4:	85 bf       	out	0x35, r24	; 53
+  sei();
+  e6:	78 94       	sei
+  sleep_cpu();
+  e8:	88 95       	sleep
+  sleep_disable();
+  ea:	83 b7       	in	r24, 0x33	; 51
+  ec:	8e 7f       	andi	r24, 0xFE	; 254
+  ee:	83 bf       	out	0x33, r24	; 51
+}
+  f0:	08 95       	ret
+
+000000f2 <ADC_Disable>:
+
+void ADC_Disable(void){
+  ADCSRA &=~ (1<<ADEN);
+  f2:	ea e7       	ldi	r30, 0x7A	; 122
+  f4:	f0 e0       	ldi	r31, 0x00	; 0
+  f6:	80 81       	ld	r24, Z
+  f8:	8f 77       	andi	r24, 0x7F	; 127
+  fa:	80 83       	st	Z, r24
+}
+  fc:	08 95       	ret
+
+000000fe <Analog_Comparator_Disable>:
+
+void Analog_Comparator_Disable(void){
+  ACSR   &=~ (1<<ACD) ;
+  fe:	80 b7       	in	r24, 0x30	; 48
+ 100:	8f 77       	andi	r24, 0x7F	; 127
+ 102:	80 bf       	out	0x30, r24	; 48
+}
+ 104:	08 95       	ret
+
+00000106 <WDT_Get_Ticks>:
+
+uint32_t WDT_Get_Ticks(void){
+  return WDT_Ticks;
+ 106:	20 91 00 01 	lds	r18, 0x0100
+ 10a:	30 91 01 01 	lds	r19, 0x0101
+ 10e:	40 91 02 01 	lds	r20, 0x0102
+ 112:	50 91 03 01 	lds	r21, 0x0103
+}
+ 116:	b9 01       	movw	r22, r18
+ 118:	ca 01       	movw	r24, r20
+ 11a:	08 95       	ret
+
+0000011c <Sleep_Init>:
+
+void Sleep_Init(void){
+  cli();
+ 11c:	f8 94       	cli
+  WDTCSR=(1<<WDCE)|(1<<WDE);
+ 11e:	e0 e6       	ldi	r30, 0x60	; 96
+ 120:	f0 e0       	ldi	r31, 0x00	; 0
+ 122:	88 e1       	ldi	r24, 0x18	; 24
+ 124:	80 83       	st	Z, r24
+  WDTCSR=(1<<WDP0)|(1<<WDP2)|(1<<WDIE);
+ 126:	85 e4       	ldi	r24, 0x45	; 69
+ 128:	80 83       	st	Z, r24
+  sei();
+ 12a:	78 94       	sei
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+ 12c:	83 b7       	in	r24, 0x33	; 51
+ 12e:	81 7f       	andi	r24, 0xF1	; 241
+ 130:	84 60       	ori	r24, 0x04	; 4
+ 132:	83 bf       	out	0x33, r24	; 51
+  sleep_cpu();
+  sleep_disable();
+}
+
+void ADC_Disable(void){
+  ADCSRA &=~ (1<<ADEN);
+ 134:	ea e7       	ldi	r30, 0x7A	; 122
+ 136:	f0 e0       	ldi	r31, 0x00	; 0
+ 138:	80 81       	ld	r24, Z
+ 13a:	8f 77       	andi	r24, 0x7F	; 127
+ 13c:	80 83       	st	Z, r24
+}
+
+void Analog_Comparator_Disable(void){
+  ACSR   &=~ (1<<ACD) ;
+ 13e:	80 b7       	in	r24, 0x30	; 48
+ 140:	8f 77       	andi	r24, 0x7F	; 127
+ 142:	80 bf       	out	0x30, r24	; 48
+  sei();
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  ADC_Disable();
+  Analog_Comparator_Disable();
+  
+}
+ 144:	08 95       	ret
+
+00000146 <__vector_6>:
+
+ISR(WDT_vect){
+ 146:	1f 92       	push	r1
+ 148:	0f 92       	push	r0
+ 14a:	0f b6       	in	r0, 0x3f	; 63
+ 14c:	0f 92       	push	r0
+ 14e:	11 24       	eor	r1, r1
+ 150:	8f 93       	push	r24
+ 152:	9f 93       	push	r25
+ 154:	af 93       	push	r26
+ 156:	bf 93       	push	r27
+ 158:	ef 93       	push	r30
+ 15a:	ff 93       	push	r31
+  WDTCSR|=(1<<WDIE);
+ 15c:	e0 e6       	ldi	r30, 0x60	; 96
+ 15e:	f0 e0       	ldi	r31, 0x00	; 0
+ 160:	80 81       	ld	r24, Z
+ 162:	80 64       	ori	r24, 0x40	; 64
+ 164:	80 83       	st	Z, r24
+  WDT_Ticks++;
+ 166:	80 91 00 01 	lds	r24, 0x0100
+ 16a:	90 91 01 01 	lds	r25, 0x0101
+ 16e:	a0 91 02 01 	lds	r26, 0x0102
+ 172:	b0 91 03 01 	lds	r27, 0x0103
+ 176:	01 96       	adiw	r24, 0x01	; 1
+ 178:	a1 1d       	adc	r26, r1
+ 17a:	b1 1d       	adc	r27, r1
+ 17c:	80 93 00 01 	sts	0x0100, r24
+ 180:	90 93 01 01 	sts	0x0101, r25
+ 184:	a0 93 02 01 	sts	0x0102, r26
+ 188:	b0 93 03 01 	sts	0x0103, r27
+}
+ 18c:	ff 91       	pop	r31
+ 18e:	ef 91       	pop	r30
+ 190:	bf 91       	pop	r27
+ 192:	af 91       	pop	r26
+ 194:	9f 91       	pop	r25
+ 196:	8f 91       	pop	r24
+ 198:	0f 90       	pop	r0
+ 19a:	0f be       	out	0x3f, r0	; 63
+ 19c:	0f 90       	pop	r0
+ 19e:	1f 90       	pop	r1
+ 1a0:	18 95       	reti
+
+000001a2 <LED_Init>:
+#define  LED_DDR  DDRD 
+#define  LED_PORT PORTD 
+#define  LED_bp   4
+
+void LED_Init(void){
+  LED_DDR |= (1<<LED_bp);
+ 1a2:	54 9a       	sbi	0x0a, 4	; 10
+  LED_PORT&=~(1<<LED_bp);
+ 1a4:	5c 98       	cbi	0x0b, 4	; 11
+}
+ 1a6:	08 95       	ret
+
+000001a8 <LED_On>:
+
+void LED_On(void){
+  LED_PORT|= (1<<LED_bp);
+ 1a8:	5c 9a       	sbi	0x0b, 4	; 11
+}
+ 1aa:	08 95       	ret
+
+000001ac <LED_Off>:
+
+void LED_Off(void){
+  LED_PORT&=~(1<<LED_bp);
+ 1ac:	5c 98       	cbi	0x0b, 4	; 11
+}
+ 1ae:	08 95       	ret
+
+000001b0 <LED_State>:
+
+uint8_t LED_State(void){
+  if(LED_PORT & (1<<LED_bp)){
+ 1b0:	8b b1       	in	r24, 0x0b	; 11
+ 1b2:	90 e0       	ldi	r25, 0x00	; 0
+ 1b4:	24 e0       	ldi	r18, 0x04	; 4
+ 1b6:	96 95       	lsr	r25
+ 1b8:	87 95       	ror	r24
+ 1ba:	2a 95       	dec	r18
+ 1bc:	e1 f7       	brne	.-8      	; 0x1b6 <LED_State+0x6>
+    return 1;
+  }else{
+    return 0;
+  }
+}
+ 1be:	81 70       	andi	r24, 0x01	; 1
+ 1c0:	08 95       	ret
+
+000001c2 <LED_Toggle>:
+void LED_Off(void){
+  LED_PORT&=~(1<<LED_bp);
+}
+
+uint8_t LED_State(void){
+  if(LED_PORT & (1<<LED_bp)){
+ 1c2:	5c 9b       	sbis	0x0b, 4	; 11
+ 1c4:	02 c0       	rjmp	.+4      	; 0x1ca <LED_Toggle+0x8>
+void LED_On(void){
+  LED_PORT|= (1<<LED_bp);
+}
+
+void LED_Off(void){
+  LED_PORT&=~(1<<LED_bp);
+ 1c6:	5c 98       	cbi	0x0b, 4	; 11
+ 1c8:	08 95       	ret
+  LED_DDR |= (1<<LED_bp);
+  LED_PORT&=~(1<<LED_bp);
+}
+
+void LED_On(void){
+  LED_PORT|= (1<<LED_bp);
+ 1ca:	5c 9a       	sbi	0x0b, 4	; 11
+ 1cc:	08 95       	ret
+
+000001ce <__udivmodsi4>:
+ 1ce:	a1 e2       	ldi	r26, 0x21	; 33
+ 1d0:	1a 2e       	mov	r1, r26
+ 1d2:	aa 1b       	sub	r26, r26
+ 1d4:	bb 1b       	sub	r27, r27
+ 1d6:	fd 01       	movw	r30, r26
+ 1d8:	0d c0       	rjmp	.+26     	; 0x1f4 <__udivmodsi4_ep>
+
+000001da <__udivmodsi4_loop>:
+ 1da:	aa 1f       	adc	r26, r26
+ 1dc:	bb 1f       	adc	r27, r27
+ 1de:	ee 1f       	adc	r30, r30
+ 1e0:	ff 1f       	adc	r31, r31
+ 1e2:	a2 17       	cp	r26, r18
+ 1e4:	b3 07       	cpc	r27, r19
+ 1e6:	e4 07       	cpc	r30, r20
+ 1e8:	f5 07       	cpc	r31, r21
+ 1ea:	20 f0       	brcs	.+8      	; 0x1f4 <__udivmodsi4_ep>
+ 1ec:	a2 1b       	sub	r26, r18
+ 1ee:	b3 0b       	sbc	r27, r19
+ 1f0:	e4 0b       	sbc	r30, r20
+ 1f2:	f5 0b       	sbc	r31, r21
+
+000001f4 <__udivmodsi4_ep>:
+ 1f4:	66 1f       	adc	r22, r22
+ 1f6:	77 1f       	adc	r23, r23
+ 1f8:	88 1f       	adc	r24, r24
+ 1fa:	99 1f       	adc	r25, r25
+ 1fc:	1a 94       	dec	r1
+ 1fe:	69 f7       	brne	.-38     	; 0x1da <__udivmodsi4_loop>
+ 200:	60 95       	com	r22
+ 202:	70 95       	com	r23
+ 204:	80 95       	com	r24
+ 206:	90 95       	com	r25
+ 208:	9b 01       	movw	r18, r22
+ 20a:	ac 01       	movw	r20, r24
+ 20c:	bd 01       	movw	r22, r26
+ 20e:	cf 01       	movw	r24, r30
+ 210:	08 95       	ret
+
+00000212 <_exit>:
+ 212:	f8 94       	cli
+
+00000214 <__stop_program>:
+ 214:	ff cf       	rjmp	.-2      	; 0x214 <__stop_program>

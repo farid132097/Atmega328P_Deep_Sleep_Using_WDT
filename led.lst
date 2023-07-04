@@ -1,0 +1,110 @@
+   1               		.file	"led.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	LED_Init
+  18               	LED_Init:
+  19               	.LFB2:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 549A      		sbi 42-32,4
+  25               	.LM3:
+  26 0002 5C98      		cbi 43-32,4
+  27               	/* epilogue start */
+  28               	.LM4:
+  29 0004 0895      		ret
+  30               	.LFE2:
+  32               	.global	LED_On
+  34               	LED_On:
+  35               	.LFB3:
+  36               	.LM5:
+  37               	/* prologue: function */
+  38               	/* frame size = 0 */
+  39               	.LM6:
+  40 0006 5C9A      		sbi 43-32,4
+  41               	/* epilogue start */
+  42               	.LM7:
+  43 0008 0895      		ret
+  44               	.LFE3:
+  46               	.global	LED_Off
+  48               	LED_Off:
+  49               	.LFB4:
+  50               	.LM8:
+  51               	/* prologue: function */
+  52               	/* frame size = 0 */
+  53               	.LM9:
+  54 000a 5C98      		cbi 43-32,4
+  55               	/* epilogue start */
+  56               	.LM10:
+  57 000c 0895      		ret
+  58               	.LFE4:
+  60               	.global	LED_State
+  62               	LED_State:
+  63               	.LFB5:
+  64               	.LM11:
+  65               	/* prologue: function */
+  66               	/* frame size = 0 */
+  67               	.LM12:
+  68 000e 8BB1      		in r24,43-32
+  69 0010 90E0      		ldi r25,lo8(0)
+  70 0012 24E0      		ldi r18,4
+  71 0014 9695      	1:	lsr r25
+  72 0016 8795      		ror r24
+  73 0018 2A95      		dec r18
+  74 001a 01F4      		brne 1b
+  75               	.LM13:
+  76 001c 8170      		andi r24,lo8(1)
+  77               	/* epilogue start */
+  78 001e 0895      		ret
+  79               	.LFE5:
+  81               	.global	LED_Toggle
+  83               	LED_Toggle:
+  84               	.LFB6:
+  85               	.LM14:
+  86               	/* prologue: function */
+  87               	/* frame size = 0 */
+  88               	.LBB8:
+  89               	.LBB9:
+  90               	.LM15:
+  91 0020 5C9B      		sbis 43-32,4
+  92 0022 00C0      		rjmp .L10
+  93               	.LBE9:
+  94               	.LBE8:
+  95               	.LBB10:
+  96               	.LBB11:
+  97               	.LM16:
+  98 0024 5C98      		cbi 43-32,4
+  99 0026 0895      		ret
+ 100               	.L10:
+ 101               	.LBE11:
+ 102               	.LBE10:
+ 103               	.LBB12:
+ 104               	.LBB13:
+ 105               	.LM17:
+ 106 0028 5C9A      		sbi 43-32,4
+ 107 002a 0895      		ret
+ 108               	.LBE13:
+ 109               	.LBE12:
+ 110               	.LFE6:
+ 168               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 led.c
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:2      *ABS*:0000003f __SREG__
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:3      *ABS*:0000003e __SP_H__
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:4      *ABS*:0000003d __SP_L__
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:5      *ABS*:00000034 __CCP__
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:18     .text:00000000 LED_Init
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:34     .text:00000006 LED_On
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:48     .text:0000000a LED_Off
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:62     .text:0000000e LED_State
+C:\Users\EED-R&I\AppData\Local\Temp/cchXrrZ0.s:83     .text:00000020 LED_Toggle
+
+NO UNDEFINED SYMBOLS
