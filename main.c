@@ -4,11 +4,12 @@
 #include <avr/sleep.h>
 #include "lowpower.h"
 #include "led.h"
-
+#include "usb.h"
 
 int main(void){
-
+  
   LED_Init();
+  USB_Init();
   Sleep_Init();
   
   while(1){

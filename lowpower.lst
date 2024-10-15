@@ -19,7 +19,7 @@
   27               	.LBB6:
   28               	.LM3:
   29               	/* #APP */
-  30               	 ;  12 "lowpower.c" 1
+  30               	 ;  13 "lowpower.c" 1
   31 0006 85B7      		in r24, 53
   32 0008 8066      		ori r24, 96
   33 000a 85BF      		out 53, r24
@@ -31,11 +31,11 @@
   39               	.LBE6:
   40               	.LM4:
   41               	/* #APP */
-  42               	 ;  13 "lowpower.c" 1
+  42               	 ;  14 "lowpower.c" 1
   43 0010 7894      		sei
   44               	 ;  0 "" 2
   45               	.LM5:
-  46               	 ;  14 "lowpower.c" 1
+  46               	 ;  15 "lowpower.c" 1
   47 0012 8895      		sleep
   48               		
   49               	 ;  0 "" 2
@@ -73,152 +73,160 @@
   85               	/* frame size = 0 */
   86               	.LM12:
   87 0028 80B7      		in r24,80-32
-  88 002a 8F77      		andi r24,lo8(127)
+  88 002a 877F      		andi r24,lo8(-9)
   89 002c 80BF      		out 80-32,r24
-  90               	/* epilogue start */
-  91               	.LM13:
-  92 002e 0895      		ret
-  93               	.LFE8:
-  95               	.global	WDT_Get_Ticks
-  97               	WDT_Get_Ticks:
-  98               	.LFB9:
-  99               	.LM14:
- 100               	/* prologue: function */
- 101               	/* frame size = 0 */
- 102               	.LM15:
- 103 0030 2091 0000 		lds r18,WDT_Ticks
- 104 0034 3091 0000 		lds r19,(WDT_Ticks)+1
- 105 0038 4091 0000 		lds r20,(WDT_Ticks)+2
- 106 003c 5091 0000 		lds r21,(WDT_Ticks)+3
- 107               	.LM16:
- 108 0040 B901      		movw r22,r18
- 109 0042 CA01      		movw r24,r20
- 110               	/* epilogue start */
- 111 0044 0895      		ret
- 112               	.LFE9:
- 114               	.global	Sleep_Init
- 116               	Sleep_Init:
- 117               	.LFB10:
- 118               	.LM17:
- 119               	/* prologue: function */
- 120               	/* frame size = 0 */
- 121               	.LM18:
- 122               	/* #APP */
- 123               	 ;  31 "lowpower.c" 1
- 124 0046 F894      		cli
- 125               	 ;  0 "" 2
- 126               	.LM19:
- 127               	/* #NOAPP */
- 128 0048 E0E6      		ldi r30,lo8(96)
- 129 004a F0E0      		ldi r31,hi8(96)
- 130 004c 88E1      		ldi r24,lo8(24)
- 131 004e 8083      		st Z,r24
- 132               	.LM20:
- 133 0050 85E4      		ldi r24,lo8(69)
- 134 0052 8083      		st Z,r24
- 135               	.LM21:
- 136               	/* #APP */
- 137               	 ;  34 "lowpower.c" 1
- 138 0054 7894      		sei
- 139               	 ;  0 "" 2
- 140               	.LM22:
- 141               	/* #NOAPP */
- 142 0056 83B7      		in r24,83-32
- 143 0058 817F      		andi r24,lo8(-15)
- 144 005a 8460      		ori r24,lo8(4)
- 145 005c 83BF      		out 83-32,r24
- 146               	.LBB7:
- 147               	.LBB8:
- 148               	.LM23:
- 149 005e EAE7      		ldi r30,lo8(122)
- 150 0060 F0E0      		ldi r31,hi8(122)
- 151 0062 8081      		ld r24,Z
- 152 0064 8F77      		andi r24,lo8(127)
- 153 0066 8083      		st Z,r24
- 154               	.LBE8:
- 155               	.LBE7:
- 156               	.LBB9:
- 157               	.LBB10:
- 158               	.LM24:
- 159 0068 80B7      		in r24,80-32
- 160 006a 8F77      		andi r24,lo8(127)
- 161 006c 80BF      		out 80-32,r24
- 162               	/* epilogue start */
- 163               	.LBE10:
- 164               	.LBE9:
- 165               	.LM25:
- 166 006e 0895      		ret
- 167               	.LFE10:
- 169               	.global	__vector_6
- 171               	__vector_6:
- 172               	.LFB11:
- 173               	.LM26:
- 174 0070 1F92      		push __zero_reg__
- 175 0072 0F92      		push r0
- 176 0074 0FB6      		in r0,__SREG__
- 177 0076 0F92      		push r0
- 178 0078 1124      		clr __zero_reg__
- 179 007a 8F93      		push r24
- 180 007c 9F93      		push r25
- 181 007e AF93      		push r26
- 182 0080 BF93      		push r27
- 183 0082 EF93      		push r30
- 184 0084 FF93      		push r31
- 185               	/* prologue: Signal */
- 186               	/* frame size = 0 */
- 187               	.LM27:
- 188 0086 E0E6      		ldi r30,lo8(96)
- 189 0088 F0E0      		ldi r31,hi8(96)
- 190 008a 8081      		ld r24,Z
- 191 008c 8064      		ori r24,lo8(64)
- 192 008e 8083      		st Z,r24
- 193               	.LM28:
- 194 0090 8091 0000 		lds r24,WDT_Ticks
- 195 0094 9091 0000 		lds r25,(WDT_Ticks)+1
- 196 0098 A091 0000 		lds r26,(WDT_Ticks)+2
- 197 009c B091 0000 		lds r27,(WDT_Ticks)+3
- 198 00a0 0196      		adiw r24,1
- 199 00a2 A11D      		adc r26,__zero_reg__
- 200 00a4 B11D      		adc r27,__zero_reg__
- 201 00a6 8093 0000 		sts WDT_Ticks,r24
- 202 00aa 9093 0000 		sts (WDT_Ticks)+1,r25
- 203 00ae A093 0000 		sts (WDT_Ticks)+2,r26
- 204 00b2 B093 0000 		sts (WDT_Ticks)+3,r27
- 205               	/* epilogue start */
- 206               	.LM29:
- 207 00b6 FF91      		pop r31
- 208 00b8 EF91      		pop r30
- 209 00ba BF91      		pop r27
- 210 00bc AF91      		pop r26
- 211 00be 9F91      		pop r25
- 212 00c0 8F91      		pop r24
- 213 00c2 0F90      		pop r0
- 214 00c4 0FBE      		out __SREG__,r0
- 215 00c6 0F90      		pop r0
- 216 00c8 1F90      		pop __zero_reg__
- 217 00ca 1895      		reti
- 218               	.LFE11:
- 220               	.global	WDT_Ticks
- 221               	.global	WDT_Ticks
- 222               		.section .bss
- 225               	WDT_Ticks:
- 226 0000 0000 0000 		.skip 4,0
- 291               	.Letext0:
+  90               	.LM13:
+  91 002e 80B7      		in r24,80-32
+  92 0030 8068      		ori r24,lo8(-128)
+  93 0032 80BF      		out 80-32,r24
+  94               	/* epilogue start */
+  95               	.LM14:
+  96 0034 0895      		ret
+  97               	.LFE8:
+  99               	.global	WDT_Get_Ticks
+ 101               	WDT_Get_Ticks:
+ 102               	.LFB9:
+ 103               	.LM15:
+ 104               	/* prologue: function */
+ 105               	/* frame size = 0 */
+ 106               	.LM16:
+ 107 0036 2091 0000 		lds r18,WDT_Ticks
+ 108 003a 3091 0000 		lds r19,(WDT_Ticks)+1
+ 109 003e 4091 0000 		lds r20,(WDT_Ticks)+2
+ 110 0042 5091 0000 		lds r21,(WDT_Ticks)+3
+ 111               	.LM17:
+ 112 0046 B901      		movw r22,r18
+ 113 0048 CA01      		movw r24,r20
+ 114               	/* epilogue start */
+ 115 004a 0895      		ret
+ 116               	.LFE9:
+ 118               	.global	Sleep_Init
+ 120               	Sleep_Init:
+ 121               	.LFB10:
+ 122               	.LM18:
+ 123               	/* prologue: function */
+ 124               	/* frame size = 0 */
+ 125               	.LM19:
+ 126               	/* #APP */
+ 127               	 ;  33 "lowpower.c" 1
+ 128 004c F894      		cli
+ 129               	 ;  0 "" 2
+ 130               	.LM20:
+ 131               	/* #NOAPP */
+ 132 004e E0E6      		ldi r30,lo8(96)
+ 133 0050 F0E0      		ldi r31,hi8(96)
+ 134 0052 88E1      		ldi r24,lo8(24)
+ 135 0054 8083      		st Z,r24
+ 136               	.LM21:
+ 137 0056 85E4      		ldi r24,lo8(69)
+ 138 0058 8083      		st Z,r24
+ 139               	.LBB7:
+ 140               	.LBB8:
+ 141               	.LM22:
+ 142 005a EAE7      		ldi r30,lo8(122)
+ 143 005c F0E0      		ldi r31,hi8(122)
+ 144 005e 8081      		ld r24,Z
+ 145 0060 8F77      		andi r24,lo8(127)
+ 146 0062 8083      		st Z,r24
+ 147               	.LBE8:
+ 148               	.LBE7:
+ 149               	.LBB9:
+ 150               	.LBB10:
+ 151               	.LM23:
+ 152 0064 80B7      		in r24,80-32
+ 153 0066 877F      		andi r24,lo8(-9)
+ 154 0068 80BF      		out 80-32,r24
+ 155               	.LM24:
+ 156 006a 80B7      		in r24,80-32
+ 157 006c 8068      		ori r24,lo8(-128)
+ 158 006e 80BF      		out 80-32,r24
+ 159               	.LBE10:
+ 160               	.LBE9:
+ 161               	.LM25:
+ 162 0070 83B7      		in r24,83-32
+ 163 0072 817F      		andi r24,lo8(-15)
+ 164 0074 8460      		ori r24,lo8(4)
+ 165 0076 83BF      		out 83-32,r24
+ 166               	.LM26:
+ 167               	/* #APP */
+ 168               	 ;  41 "lowpower.c" 1
+ 169 0078 7894      		sei
+ 170               	 ;  0 "" 2
+ 171               	/* epilogue start */
+ 172               	.LM27:
+ 173               	/* #NOAPP */
+ 174 007a 0895      		ret
+ 175               	.LFE10:
+ 177               	.global	__vector_6
+ 179               	__vector_6:
+ 180               	.LFB11:
+ 181               	.LM28:
+ 182 007c 1F92      		push __zero_reg__
+ 183 007e 0F92      		push r0
+ 184 0080 0FB6      		in r0,__SREG__
+ 185 0082 0F92      		push r0
+ 186 0084 1124      		clr __zero_reg__
+ 187 0086 8F93      		push r24
+ 188 0088 9F93      		push r25
+ 189 008a AF93      		push r26
+ 190 008c BF93      		push r27
+ 191 008e EF93      		push r30
+ 192 0090 FF93      		push r31
+ 193               	/* prologue: Signal */
+ 194               	/* frame size = 0 */
+ 195               	.LM29:
+ 196 0092 E0E6      		ldi r30,lo8(96)
+ 197 0094 F0E0      		ldi r31,hi8(96)
+ 198 0096 8081      		ld r24,Z
+ 199 0098 8064      		ori r24,lo8(64)
+ 200 009a 8083      		st Z,r24
+ 201               	.LM30:
+ 202 009c 8091 0000 		lds r24,WDT_Ticks
+ 203 00a0 9091 0000 		lds r25,(WDT_Ticks)+1
+ 204 00a4 A091 0000 		lds r26,(WDT_Ticks)+2
+ 205 00a8 B091 0000 		lds r27,(WDT_Ticks)+3
+ 206 00ac 0196      		adiw r24,1
+ 207 00ae A11D      		adc r26,__zero_reg__
+ 208 00b0 B11D      		adc r27,__zero_reg__
+ 209 00b2 8093 0000 		sts WDT_Ticks,r24
+ 210 00b6 9093 0000 		sts (WDT_Ticks)+1,r25
+ 211 00ba A093 0000 		sts (WDT_Ticks)+2,r26
+ 212 00be B093 0000 		sts (WDT_Ticks)+3,r27
+ 213               	/* epilogue start */
+ 214               	.LM31:
+ 215 00c2 FF91      		pop r31
+ 216 00c4 EF91      		pop r30
+ 217 00c6 BF91      		pop r27
+ 218 00c8 AF91      		pop r26
+ 219 00ca 9F91      		pop r25
+ 220 00cc 8F91      		pop r24
+ 221 00ce 0F90      		pop r0
+ 222 00d0 0FBE      		out __SREG__,r0
+ 223 00d2 0F90      		pop r0
+ 224 00d4 1F90      		pop __zero_reg__
+ 225 00d6 1895      		reti
+ 226               	.LFE11:
+ 228               	.global	WDT_Ticks
+ 229               	.global	WDT_Ticks
+ 230               		.section .bss
+ 233               	WDT_Ticks:
+ 234 0000 0000 0000 		.skip 4,0
+ 299               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 lowpower.c
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:2      *ABS*:0000003f __SREG__
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:3      *ABS*:0000003e __SP_H__
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:4      *ABS*:0000003d __SP_L__
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:5      *ABS*:00000034 __CCP__
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:18     .text:00000000 Deep_Sleep
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:63     .text:0000001c ADC_Disable
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:81     .text:00000028 Analog_Comparator_Disable
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:97     .text:00000030 WDT_Get_Ticks
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:225    .bss:00000000 WDT_Ticks
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:116    .text:00000046 Sleep_Init
-C:\Users\EED-R&I\AppData\Local\Temp/ccFcqzIL.s:171    .text:00000070 __vector_6
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:2      *ABS*:0000003f __SREG__
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:3      *ABS*:0000003e __SP_H__
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:4      *ABS*:0000003d __SP_L__
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:5      *ABS*:00000034 __CCP__
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:18     .text:00000000 Deep_Sleep
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:63     .text:0000001c ADC_Disable
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:81     .text:00000028 Analog_Comparator_Disable
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:101    .text:00000036 WDT_Get_Ticks
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:233    .bss:00000000 WDT_Ticks
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:120    .text:0000004c Sleep_Init
+C:\Users\WALTON\AppData\Local\Temp/ccDxsITQ.s:179    .text:0000007c __vector_6
 
 UNDEFINED SYMBOLS
 __do_clear_bss

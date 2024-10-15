@@ -17,79 +17,82 @@
   25               	.LM2:
   26 0004 0E94 0000 		call LED_Init
   27               	.LM3:
-  28 0008 0E94 0000 		call Sleep_Init
-  29               	.LBB12:
-  30               	.LBB13:
-  31               	.LBB14:
-  32               	.LBB15:
-  33               	.LM4:
-  34 000c CCE2      		ldi r28,lo8(300)
-  35 000e D1E0      		ldi r29,hi8(300)
-  36               	.L7:
-  37               	.LBE15:
-  38               	.LBE14:
-  39               	.LBE13:
-  40               	.LBE12:
-  41               	.LM5:
-  42 0010 0E94 0000 		call WDT_Get_Ticks
-  43 0014 25E0      		ldi r18,lo8(5)
-  44 0016 30E0      		ldi r19,hi8(5)
-  45 0018 40E0      		ldi r20,hlo8(5)
-  46 001a 50E0      		ldi r21,hhi8(5)
-  47 001c 0E94 0000 		call __udivmodsi4
-  48 0020 6115      		cp r22,__zero_reg__
-  49 0022 7105      		cpc r23,__zero_reg__
-  50 0024 8105      		cpc r24,__zero_reg__
-  51 0026 9105      		cpc r25,__zero_reg__
-  52 0028 01F4      		brne .L2
-  53               	.LM6:
-  54 002a 0E94 0000 		call LED_On
-  55 002e 84EF      		ldi r24,lo8(500)
-  56 0030 91E0      		ldi r25,hi8(500)
-  57               	.LVL0:
-  58               	.L3:
-  59               	.LBB19:
-  60               	.LBB18:
-  61               	.LBB17:
-  62               	.LBB16:
-  63               	.LM7:
-  64 0032 FE01      		movw r30,r28
-  65               	.LVL1:
-  66               	/* #APP */
-  67               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
-  68 0034 3197      		1: sbiw r30,1
-  69 0036 01F4      		brne 1b
-  70               	 ;  0 "" 2
-  71               	/* #NOAPP */
-  72               	.LBE16:
-  73               	.LBE17:
-  74               	.LM8:
-  75 0038 0197      		sbiw r24,1
+  28 0008 0E94 0000 		call USB_Init
+  29               	.LM4:
+  30 000c 0E94 0000 		call Sleep_Init
+  31               	.LBB12:
+  32               	.LBB13:
+  33               	.LBB14:
+  34               	.LBB15:
+  35               	.LM5:
+  36 0010 CCE2      		ldi r28,lo8(300)
+  37 0012 D1E0      		ldi r29,hi8(300)
+  38               	.L7:
+  39               	.LBE15:
+  40               	.LBE14:
+  41               	.LBE13:
+  42               	.LBE12:
+  43               	.LM6:
+  44 0014 0E94 0000 		call WDT_Get_Ticks
+  45 0018 25E0      		ldi r18,lo8(5)
+  46 001a 30E0      		ldi r19,hi8(5)
+  47 001c 40E0      		ldi r20,hlo8(5)
+  48 001e 50E0      		ldi r21,hhi8(5)
+  49 0020 0E94 0000 		call __udivmodsi4
+  50 0024 6115      		cp r22,__zero_reg__
+  51 0026 7105      		cpc r23,__zero_reg__
+  52 0028 8105      		cpc r24,__zero_reg__
+  53 002a 9105      		cpc r25,__zero_reg__
+  54 002c 01F4      		brne .L2
+  55               	.LM7:
+  56 002e 0E94 0000 		call LED_On
+  57 0032 84EF      		ldi r24,lo8(500)
+  58 0034 91E0      		ldi r25,hi8(500)
+  59               	.LVL0:
+  60               	.L3:
+  61               	.LBB19:
+  62               	.LBB18:
+  63               	.LBB17:
+  64               	.LBB16:
+  65               	.LM8:
+  66 0036 FE01      		movw r30,r28
+  67               	.LVL1:
+  68               	/* #APP */
+  69               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  70 0038 3197      		1: sbiw r30,1
+  71 003a 01F4      		brne 1b
+  72               	 ;  0 "" 2
+  73               	/* #NOAPP */
+  74               	.LBE16:
+  75               	.LBE17:
   76               	.LM9:
-  77 003a 01F4      		brne .L3
-  78               	.LBE18:
-  79               	.LBE19:
-  80               	.LM10:
-  81 003c 0E94 0000 		call LED_Off
-  82               	.LVL2:
-  83               	.L2:
-  84               	.LM11:
-  85 0040 0E94 0000 		call Deep_Sleep
-  86 0044 00C0      		rjmp .L7
-  87               	.LFE6:
- 113               	.Letext0:
+  77 003c 0197      		sbiw r24,1
+  78               	.LM10:
+  79 003e 01F4      		brne .L3
+  80               	.LBE18:
+  81               	.LBE19:
+  82               	.LM11:
+  83 0040 0E94 0000 		call LED_Off
+  84               	.LVL2:
+  85               	.L2:
+  86               	.LM12:
+  87 0044 0E94 0000 		call Deep_Sleep
+  88 0048 00C0      		rjmp .L7
+  89               	.LFE6:
+ 115               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\EED-R&I\AppData\Local\Temp/ccfrdlZG.s:2      *ABS*:0000003f __SREG__
-C:\Users\EED-R&I\AppData\Local\Temp/ccfrdlZG.s:3      *ABS*:0000003e __SP_H__
-C:\Users\EED-R&I\AppData\Local\Temp/ccfrdlZG.s:4      *ABS*:0000003d __SP_L__
-C:\Users\EED-R&I\AppData\Local\Temp/ccfrdlZG.s:5      *ABS*:00000034 __CCP__
-C:\Users\EED-R&I\AppData\Local\Temp/ccfrdlZG.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\EED-R&I\AppData\Local\Temp/ccfrdlZG.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\EED-R&I\AppData\Local\Temp/ccfrdlZG.s:18     .text:00000000 main
+C:\Users\WALTON\AppData\Local\Temp/ccfCYhEa.s:2      *ABS*:0000003f __SREG__
+C:\Users\WALTON\AppData\Local\Temp/ccfCYhEa.s:3      *ABS*:0000003e __SP_H__
+C:\Users\WALTON\AppData\Local\Temp/ccfCYhEa.s:4      *ABS*:0000003d __SP_L__
+C:\Users\WALTON\AppData\Local\Temp/ccfCYhEa.s:5      *ABS*:00000034 __CCP__
+C:\Users\WALTON\AppData\Local\Temp/ccfCYhEa.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\WALTON\AppData\Local\Temp/ccfCYhEa.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\WALTON\AppData\Local\Temp/ccfCYhEa.s:18     .text:00000000 main
 
 UNDEFINED SYMBOLS
 LED_Init
+USB_Init
 Sleep_Init
 WDT_Get_Ticks
 __udivmodsi4

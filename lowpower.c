@@ -4,6 +4,7 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
+#include "lowpower.h"
 
 volatile uint32_t WDT_Ticks=0;
 
@@ -20,7 +21,8 @@ void ADC_Disable(void){
 }
 
 void Analog_Comparator_Disable(void){
-  ACSR   &=~ (1<<ACD) ;
+  ACSR   &=~ (1<<ACIE) ;
+  ACSR   |=  (1<<ACD) ;
 }
 
 uint32_t WDT_Get_Ticks(void){
@@ -31,11 +33,12 @@ void Sleep_Init(void){
   cli();
   WDTCSR=(1<<WDCE)|(1<<WDE);
   WDTCSR=(1<<WDP0)|(1<<WDP2)|(1<<WDIE);
-  sei();
-  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  
   ADC_Disable();
   Analog_Comparator_Disable();
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
   
+  sei();
 }
 
 ISR(WDT_vect){
